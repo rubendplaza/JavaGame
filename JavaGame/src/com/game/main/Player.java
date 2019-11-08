@@ -1,15 +1,22 @@
 package com.game.main;
 
-import java.awt.Graphics;
-import java.util.Random;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.util.Random;
 
 public class Player extends GameObject {
 
   Random r = new Random();
+  Handler handler;
 
-  public Player(int x, int y, ID id) {
+  public Player(int x, int y, ID id, Handler handler) {
     super(x, y, id);
+    this.handler = handler;
+  }
+  
+  public Rectangle getBounds() {
+	  return new Rectangle(x, y, 32, 32);
   }
   
   public void tick() {
@@ -19,13 +26,34 @@ public class Player extends GameObject {
     x = Game.clamp(x, 0, Game.WIDTH-48);
     y = Game.clamp(y, 0, Game.HEIGHT-72);
     
+    handler.addObject(new Trail(x, y, ID.Trail, Color.white, 32, 32, 0.05f, handler));
+    
+    collision();
+  }
+  
+  private void collision() {
+	  
+	  for(int i = 0; i < handler.object.size(); i++) {
+		  
+		  GameObject tempObject = handler.object.get(i);
+		  
+		  if(tempObject.getId() == ID.BasicEnemy) {
+			  
+			  if(getBounds().intersects(tempObject.getBounds())){
+				  //collision code
+				  HUD.HEALTH -= 2;
+			  }
+		  }
+		  
+		  
+	  }
+	  
   }
 
   
   public void render(Graphics g) {
 	  
-	  g.setColor(Color.white);
-    
+	g.setColor(Color.white);
     g.fillRect(x, y, 32, 32);
 
   }
@@ -35,20 +63,3 @@ public class Player extends GameObject {
 
 }
 
-//my way of not allowing the player to go off the screen instead of library
-//if(y <= 0) {
-//velY = 0;
-//y = 0;
-//}
-//if(y > Game.HEIGHT-72) {
-//velY = 0;
-//y = Game.HEIGHT-72;
-//}
-//if(x <= 0) {
-//velX = 0;
-//x = 0;
-//}
-//if(x > Game.WIDTH-48) {
-//velX = 0;
-//x = Game.WIDTH-48;
-//}
