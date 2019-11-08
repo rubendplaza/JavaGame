@@ -2,8 +2,7 @@ package com.game.main;
 
 public enum ID {
 
-  Player(),
-  Trail(),//don't forget that comma!!!
+  Player(),   //don't forget that comma!!!
   BasicEnemy();
 	
 }
