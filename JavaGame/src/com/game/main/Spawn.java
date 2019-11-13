@@ -21,14 +21,14 @@ public class Spawn {
 	public void tick() {
 		scoreKeep++;
 		
-		if(scoreKeep >= 1000) {
+		if(scoreKeep >= 750) {
 			scoreKeep = 0;
 			hud.setLevel(hud.getLevel() + 1);
 			
-			
-			if(hud.getLevel() == 2) {
 				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.BasicEnemy, handler));
-			}
+				handler.addObject(new FastEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.FastEnemy, handler));
+				handler.addObject(new SmartEnemy(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.SmartEnemy, handler));
+			
 			
 			
 		}

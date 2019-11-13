@@ -5,12 +5,13 @@ import java.awt.Rectangle;
 
 public abstract class GameObject {
 
-  protected int x, y; // can only be accessed by classes that inherit this class
+  protected float x, y; // can only be accessed by classes that inherit this class
   protected ID id;
-  protected int velX, velY;
+  protected float velX, velY;
 
-  public GameObject(int x, int y, ID id){
+  public GameObject(float x, float y, ID id){
 
+	  
       this.x = x;
       this.y = y;
       this.id = id;
@@ -23,19 +24,19 @@ public abstract class GameObject {
   
   public abstract Rectangle getBounds(); // rectangle has an intersect method for two rectangles, true if colliding 
 
-  public void setX(int x){
+  public void setX(float x){
     this.x = x;
   }
 
-  public void setY(int y){
+  public void setY(float y){
     this.y = y;
   }
 
-  public int getX(){
+  public float getX(){
     return x;
   }
 
-  public int getY(){
+  public float getY(){
     return y;
   }
 
@@ -47,19 +48,19 @@ public abstract class GameObject {
     return id;
   }
 
-  public void setVelX(int velX){
+  public void setVelX(float velX){
     this.velX = velX;
   }
 
-  public void setVelY(int velY){
+  public void setVelY(float velY){
     this.velY = velY;
   }
 
-  public int getVelX(){
+  public float getVelX(){
     return velX;
   }
 
-  public int getVelY(){
+  public float getVelY(){
     return velY;
   }
 

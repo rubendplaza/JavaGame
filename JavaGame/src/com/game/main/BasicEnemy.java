@@ -16,10 +16,11 @@ public class BasicEnemy extends GameObject{
 		velX = 5;
 		velY = 5;
 		
+		
 	}
 
 	public Rectangle getBounds() {
-		  return new Rectangle(x, y, 16, 16);
+		  return new Rectangle((int)x, (int)y, 16, 16);
 	  }
 	
 	public void tick() {
@@ -39,7 +40,7 @@ public class BasicEnemy extends GameObject{
 	public void render(Graphics g) {
 		
 		g.setColor(Color.red);
-		g.fillRect(x, y, 16, 16);
+		g.fillRect((int)x, (int)y, 16, 16);
 		
 	}
 	
