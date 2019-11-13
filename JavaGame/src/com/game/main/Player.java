@@ -42,6 +42,7 @@ public class Player extends GameObject {
 			  if(getBounds().intersects(tempObject.getBounds())){
 				  //collision code
 				  HUD.HEALTH -= 2;
+				  
 			  }
 		  }
 		  
