@@ -1,11 +1,15 @@
 package com.game.main;
 
 import java.awt.Graphics;
-import java.util.LinkedList;
+import java.util.ArrayList;
+
+//import com.game.main.Game.STATE;
 
 public class Handler {
 
-  LinkedList <GameObject> object = new LinkedList<GameObject>();
+  ArrayList <GameObject> object = new ArrayList<GameObject>();
+  // changed to arraylist because linkedlist was causing null pointer exceptions
+  // if causing problems later try implementing a try catch inside the render for loop
 
   public void tick(){
     for(int i = 0; i < object.size(); i++){
@@ -20,11 +24,10 @@ public class Handler {
 
   public void render(Graphics g){
     for(int i = 0; i < object.size(); i++){
-      GameObject tempObject = object.get(i);
 
-      tempObject.render(g);
-      
-
+    	GameObject tempObject = object.get(i);
+    	tempObject.render(g);
+     
     }
 
   }
@@ -37,6 +40,7 @@ public class Handler {
 
 	      if(tempObject.getId() == ID.Player) {
 	    	  object.clear();
+	    	  if(Game.gameState != Game.STATE.End)
 	    	  addObject(new Player((int)tempObject.getX(), (int)tempObject.getY(), ID.Player, this));
 	      }
 	      
