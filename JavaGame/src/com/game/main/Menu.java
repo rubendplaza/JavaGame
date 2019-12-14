@@ -31,10 +31,8 @@ public class Menu extends MouseAdapter{
 			
 			//play button
 			if(mouseOver(mx, my, 210, 150, 200, 64)) {
-				game.gameState = STATE.Game;
-				handler.addObject(new Player(Game.WIDTH/2 -32, Game.HEIGHT/2 -32, ID.Player, handler));
-				handler.clearEnemys();
-	            handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-64), r.nextInt(Game.HEIGHT-64), ID.BasicEnemy, handler));
+				game.gameState = STATE.Select;
+				return;
 			}
 			
 			//help button
@@ -45,6 +43,35 @@ public class Menu extends MouseAdapter{
 			//quit button
 			if(mouseOver(mx, my, 210, 350, 200, 64)) {
 				System.exit(1);
+			}
+		}
+		
+		if(game.gameState == STATE.Select) {
+			
+			//normal button
+			if(mouseOver(mx, my, 210, 150, 200, 64)) {
+				game.gameState = STATE.Game;
+				handler.addObject(new Player(Game.WIDTH/2 -32, Game.HEIGHT/2 -32, ID.Player, handler));
+				handler.clearEnemys();
+	            handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH-64), r.nextInt(Game.HEIGHT-64), ID.BasicEnemy, handler));
+
+	            game.diff = 0;
+			}
+			
+			//hard button
+			if(mouseOver(mx, my, 210, 250, 200, 64)) {
+				game.gameState = STATE.Game;
+				handler.addObject(new Player(Game.WIDTH/2 -32, Game.HEIGHT/2 -32, ID.Player, handler));
+				handler.clearEnemys();
+	            handler.addObject(new HardEnemy(r.nextInt(Game.WIDTH-64), r.nextInt(Game.HEIGHT-64), ID.BasicEnemy, handler));
+
+	            game.diff = 1;
+			}
+			
+			//back button
+			if(mouseOver(mx, my, 210, 350, 200, 64)) {
+				game.gameState = STATE.Menu;
+				return;
 			}
 		}
 
@@ -135,6 +162,24 @@ public class Menu extends MouseAdapter{
 			
 			g.setFont(fontTwo);
 			g.drawString("Try Again", 242, 392);
+			g.drawRect(210, 350, 200, 64);
+		}
+		else if(game.gameState == STATE.Select) {
+			Font fontOne = new Font("arial", 1, 50);
+			Font fontTwo = new Font("arial", 1, 30);
+			
+			g.setFont(fontOne);
+			g.setColor(Color.white);
+			g.drawString("SELECT DIFFICULTY", 70, 90);
+			
+			g.setFont(fontTwo);
+			g.drawString("Normal", 260, 190);
+			g.drawRect(210, 150, 200, 64);
+			
+			g.drawString("Hard", 275, 290);
+			g.drawRect(210, 250, 200, 64);
+			
+			g.drawString("Back", 275, 390);
 			g.drawRect(210, 350, 200, 64);
 		}
 		
