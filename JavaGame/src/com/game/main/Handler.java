@@ -7,9 +7,11 @@ import java.util.ArrayList;
 
 public class Handler {
 
-  ArrayList <GameObject> object = new ArrayList<GameObject>();
-  // changed to arraylist because linkedlist was causing null pointer exceptions
-  // if causing problems later try implementing a try catch inside the render for loop
+	public int speed = 5;
+	
+	ArrayList <GameObject> object = new ArrayList<GameObject>();
+	// changed to arraylist because linkedlist was causing null pointer exceptions
+	// if causing problems later try implementing a try catch inside the render for loop
 
   public void tick(){
     for(int i = 0; i < object.size(); i++){
